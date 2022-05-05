@@ -2,6 +2,6 @@
 Logistic regression，逻辑回归，是在线性回归的基础上加上一个sigmod函数，损失函数是log损失函数,简单的二分类任务
 <br>
 <div align="center"> 
-    <img src="https://github.com/mkzzz/nlp-algorithm-basic/tree/master/assets/lr1.png" width="10px">
+    <img src="https://github.com/mkzzz/nlp-algorithm-basic/tree/master/assets/lr1.png" width="100px">
 </div>
 <br>
