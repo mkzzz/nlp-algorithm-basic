@@ -70,10 +70,10 @@ SentenceBERT，孪生网络
 K-BERT，腾讯，图谱
 XLNET，既保持LM，又想要上下文信息，预测第i个词时，从上下文随机选i-1个词attention
 
-elmo/gpt/bert对比
+elmo/gpt/bert对比  
 elmo，Bilstm+LM，feature-based(固定elmo权重)  
-gpt，transformer-decoder部分，含有sequence-mask，去掉中间的encoder-decoder-attention，fine-tuning
-bert，transformer-encoder部分，无sequence-mask，fine-tuning
+gpt，transformer-decoder部分，含有sequence-mask，去掉中间的encoder-decoder-attention，fine-tuning   
+bert，transformer-encoder部分，无sequence-mask，fine-tuning   
 <div align="center"><img src="../assets/bert_gpt_elmo对比.png"></div>  
 
 <div class="WordSection1" style="layout-grid:15.6pt">
