@@ -1,4 +1,4 @@
-Transformer是谷歌在2017年6月论文 Attention is all you need发布的一个用来替代RNN和CNN的新的网络结构，  
+Transformer是谷歌在2017年6月论文 Attention is all you need发布的一个用来替代RNN和CNN的新的网络结构https://arxiv.org/pdf/1706.03762.pdf   
 本质上就是一个Attention结构，它能够直接获取全局的信息，而不像RNN需要逐步递归才能获得全局信息，也不像CNN只能获取局部信息，并且其能够进行并行运算  
   
 模型意义  
