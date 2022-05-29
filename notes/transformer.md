@@ -23,7 +23,7 @@ de-de，Q(de-in),K(de-in),V(de-in),
   
 结构  
 6个encoder，6个decoder  
-<div align="center"><img src="../assets/trans结构1.png"><img src="../assets/trans结构2.png"><img src="../assets/trans结构3.png"><img src="../assets/trans结构4.png"></div>  
+<div align="center"><img src="../assets/trans结构0.png"><img src="../assets/trans结构1.png"><img src="../assets/trans结构2.png"><img src="../assets/trans结构3.png"><img src="../assets/trans结构4.png"></div>  
   
 FFN，feed forward network  
 两层，可用线性也可用卷积  
