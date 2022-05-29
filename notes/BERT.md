@@ -18,9 +18,9 @@ Bert结构是在transformer模型的基础上（只用了左边的图），增�
 
 bert的输入数据通过3个信息相加  
 <div align="center"><img src="../assets/bert输入.png"></div>
-1.词向量序列，token  
-2.句子信息，segment  
-3.位置信息，position，可训练，随机初始化或加上用户输入的ids  
+1.词向量序列，token    
+2.句子信息，segment     
+3.位置信息，position，可训练，随机初始化或加上用户输入的ids     
 
 激活函数，gelu，(GaussianErrorLinearUnits高斯误差线性单元）  
 
