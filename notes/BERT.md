@@ -52,5 +52,5 @@ bert的缺点
 2.训练时，maksed之间的词是相互独立的，这是假设，其实不是  
   
 bert对比  
-CBOW和MLM的区别:  
+CBOW和MLM的区别：  
 两者都是根据上下文预测中间词，CBOW有context，window，MLM没有限制
