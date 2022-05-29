@@ -17,6 +17,7 @@ Bert结构是在transformer模型的基础上（只用了左边的图），增�
 3.15%的词中10%的概率用其他词代替   
 
 bert的输入数据通过3个信息相加  
+<div align="center"><img src="../assets/bert输入.png"></div>  
 1.词向量序列，token  
 2.句子信息，segment  
 3.位置信息，position，可训练，随机初始化或加上用户输入的ids  
@@ -52,4 +53,4 @@ bert的缺点
   
 bert对比  
 CBOW和MLM的区别:  
-两者都是根据上下文预测中间词，CBOW有context，window，MLM没有限制  
+两者都是根据上下文预测中间词，CBOW有context，window，MLM没有限制
