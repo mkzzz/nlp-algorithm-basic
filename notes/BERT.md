@@ -54,3 +54,113 @@ bert的缺点
 bert对比  
 CBOW和MLM的区别：  
 两者都是根据上下文预测中间词，CBOW有context，window，MLM没有限制
+
+elmo/gpt/bert对比  
+elmo，Bilstm+LM，feature-based(固定elmo权重)  
+gpt，transformer-decoder部分，含有sequence-mask，去掉中间的encoder-decoder-attention，fine-tuning
+bert，transformer-encoder部分，无sequence-mask，fine-tuning
+<div class="WordSection1" style="layout-grid:15.6pt">
+
+<table class="MsoTableGrid" border="1" cellspacing="0" cellpadding="0" width="563" style="width:422.1pt;border-collapse:collapse;border:none;mso-border-alt:solid windowtext .5pt;
+ mso-yfti-tbllook:1184;mso-padding-alt:0cm 5.4pt 0cm 5.4pt">
+ <tbody><tr style="mso-yfti-irow:0;mso-yfti-firstrow:yes;height:20.8pt">
+  <td width="141" valign="top" style="width:105.5pt;border:solid windowtext 1.0pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:20.8pt">
+  <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+  </td>
+  <td width="161" valign="top" style="width:121.05pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:20.8pt">
+  <p class="MsoNormal">优点</p>
+  </td>
+  <td width="180" valign="top" style="width:134.7pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:20.8pt">
+  <p class="MsoNormal">缺点</p>
+  </td>
+  <td width="81" valign="top" style="width:60.85pt;border:solid windowtext 1.0pt;
+  border-left:none;mso-border-left-alt:solid windowtext .5pt;mso-border-alt:
+  solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:20.8pt">
+  <p class="MsoNormal"><span lang="EN-US">GELU</span>表现</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:1;height:42.35pt">
+  <td width="141" valign="top" style="width:105.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:42.35pt">
+  <p class="MsoNormal"><span lang="EN-US">ELMO</span></p>
+  </td>
+  <td width="161" valign="top" style="width:121.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:42.35pt">
+  <p class="MsoNormal">动态词向量</p>
+  </td>
+  <td width="180" valign="top" style="width:134.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:42.35pt">
+  <p class="MsoNormal">双向只是单纯的<span class="SpellE"><span lang="EN-US">concat</span></span>两个<span class="SpellE"><span lang="EN-US">lstm</span></span>，并没有真正的双向</p>
+  </td>
+  <td width="81" valign="top" style="width:60.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:42.35pt">
+  <p class="MsoNormal">最差</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:2;height:41.55pt">
+  <td width="141" valign="top" style="width:105.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:41.55pt">
+  <p class="MsoNormal"><span lang="EN-US">GPT</span></p>
+  </td>
+  <td width="161" valign="top" style="width:121.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:41.55pt">
+  <p class="MsoNormal">文本生成表现出色，同时采用辅助目标函数和<span lang="EN-US">LM</span></p>
+  </td>
+  <td width="180" valign="top" style="width:134.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:41.55pt">
+  <p class="MsoNormal">单向的<span lang="EN-US">transformer</span>结构，无法利用上下文信息</p>
+  </td>
+  <td width="81" valign="top" style="width:60.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:41.55pt">
+  <p class="MsoNormal">较差</p>
+  </td>
+ </tr>
+ <tr style="mso-yfti-irow:3;mso-yfti-lastrow:yes;height:53.4pt">
+  <td width="141" valign="top" style="width:105.5pt;border:solid windowtext 1.0pt;
+  border-top:none;mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid windowtext .5pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:53.4pt">
+  <p class="MsoNormal"><span lang="EN-US">BERT</span></p>
+  </td>
+  <td width="161" valign="top" style="width:121.05pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:53.4pt">
+  <p class="MsoNormal">各项任务表现最好，采用<span lang="EN-US">MLM</span>的实现形式，完成真正意义上的的双向，增加了句子级别的预测任务</p>
+  </td>
+  <td width="180" valign="top" style="width:134.7pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:53.4pt">
+  <p class="MsoNormal">在文本生成任务上表现不佳</p>
+  </td>
+  <td width="81" valign="top" style="width:60.85pt;border-top:none;border-left:
+  none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  mso-border-top-alt:solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;
+  mso-border-alt:solid windowtext .5pt;padding:0cm 5.4pt 0cm 5.4pt;height:53.4pt">
+  <p class="MsoNormal">最好</p>
+  </td>
+ </tr>
+</tbody></table>
+
+<p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+
+</div>
