@@ -1,7 +1,7 @@
 2018年，openAI，Generative Pre-Training  
 gpt1，12层，117M，https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf  
 gpt2，48层，1542M，1600维度，https://d4mucfpksywv.cloudfront.net/better-language-models/language-models.pdf  
-gpt3，96层，175000M，12888维度  
+gpt3，96层，175000M，12888维度，https://arxiv.org/pdf/2005.14165.pdf  
 缺点，自回归，没用全局信息，只用ti之前的信息  
   
 意义  
