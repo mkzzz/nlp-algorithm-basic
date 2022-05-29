@@ -33,7 +33,7 @@ FFN作用
 1.增加参数，增强模型拟合能力  
 2.相当于对字embedding加入参数，增强自己字内部的信息，从768-2048-768只是单个字内不得embedding-size变化  
 bert结构  
-<div align="center"><img src="../assets/bert结构1_encoder.png"></div>  
+<div align="center"><img src="../assets/bert结构1_encoder.png"><img src="../assets/bert结构2.png"></div>  
 <div align="center"><img src="../assets/bert结构2.png"></div>  
   
 bert问题  
