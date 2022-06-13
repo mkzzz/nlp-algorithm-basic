@@ -50,6 +50,9 @@ bert问题
 bert的缺点  
 1.finetune时输入无需mask，导致暴露偏差，为了缓解，采用百分比mask的策略  
 2.训练时，maksed之间的词是相互独立的，这是假设，其实不是  
+
+bert参数计算
+https://zhuanlan.zhihu.com/p/144582114
   
 bert对比  
 CBOW和MLM的区别：  
