@@ -1,0 +1,24 @@
+1.八股文
+nlp知识
+问答题
+01、Python基础：GIL锁、进程阻塞与非阻塞方法、列表表达式、装饰器、最小堆
+02、统计机器学习基础：逻辑回归、交叉熵的推导、梯度下降与导数、坐标下降法、岭回归 Ridge与lasso回归、过拟合与欠拟合
+03、经典机器学习模型：3.1 生成模型——朴素贝叶斯NB、隐马尔可夫HMM3.2 判别模型——SVM（对偶问题）、逻辑回归LR、条件随机场CRF
+04、评价指标：精确率P，召回率R，F1 score(Macro与Micro)、TPR、FPR、混淆矩阵、AUC、ROC
+05、损失函数：交叉熵、sigmoid与softmax、折页损失函数Hinge loss
+06、深度学习基础：Batch Normalization、RNN、LSTM、Attention
+07、激活函数：Sigmoid、tanh、Relu、Gelu等
+08、优化器算法：SGD、Monetum、AdaGrad、AdaGrad、AdaDelta、Adam
+09、序列模型的解码方法：Beam Search、贪心算法、维特比Viterbi
+10、NLP预训练模型：Word2Vec、ELMO、Attention、BERT、XLNet
+11、NLP子任务：NER、情感分类、机器翻译、问答机器人
+
+
+
+2.code
+dccode
+interviewcode
+leetcode
+
+3.项目
+细化和熟悉
