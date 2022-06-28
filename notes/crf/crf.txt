@@ -1,5 +1,5 @@
 查看苏剑林版本解释，https://spaces.ac.cn/archives/4695
-
+CRF （Conditional Random Field）
 1.什么是crf
 CRF捕捉的是“输出”的上下文关联，他减轻了，bio标注，o后面接i的情况
 CRF层本质上是一个带训练参数的loss计算层，他返回的输出是之前神经网络的输出，因此CRF层只用来训练模型，而预测则需要另外建立模型，
