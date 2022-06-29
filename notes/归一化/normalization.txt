@@ -1,0 +1,40 @@
+normalization
+意义：
+训练过程中，数据发生变化，对下层网络学习带来困难，拉回均值为0方差为1的正态分布上，缓解梯度消失
+防止网络梯度消失：这个要结合sigmoid函数进行理解
+加速训练，也允许更大的学习率：数据在一个合适的分布空间，经过激活函数，仍然得到不错的梯度。梯度好了自然加速训练。
+降低参数初始化敏感
+提高网络泛化能力防止过拟合
+
+batch-normalization
+1.沿着通道计算每个batch的均值u
+2.计算房差，b
+3.归一化，x = (x-u)/(b**2+t)**0.5 t是极小值
+4.加入缩放和平移，y = wx+b
+步骤4的原因:
+保证归一化后，保留原有的学习来的特征，同时又完成归一化的操作，w和b是可学习参数
+缺点:
+1.对batch-size的大小敏感
+2.对RNN来说，sequence长度不同
+推理时：
+均值来说直接计算所有训练时batch的的平均值，而方差采用训练时每个batch的的无偏估计；但在实际实现中，如果训练几百万个Batch，那么是不是要将其均值方差全部储存，最后推理时再计算他们的均值作为推理时的均值和方差？这样显然太过笨拙，占用内存随着训练次数不断上升。为了避免该问题，后面代码实现部分使用了滑动平均，储存固定个数Batch的均值和方差，不断迭代更新推理时需要的均值和方差
+
+
+layer-normalization
+当维度是(batch,sequence,dim)时，计算均值和方差是按照最后一个dim的维度，在bert里就是对768维度进行均值和方差的计算
+def __init__(self,
+             dimension: int,
+             eps: float = 1e-6) -> None:
+    super().__init__()
+    self.gamma = torch.nn.Parameter(torch.ones(dimension))
+    self.beta = torch.nn.Parameter(torch.zeros(dimension))
+    self.eps = eps
+
+def forward(self, tensor: torch.Tensor):  # pylint: disable=arguments-differ
+    # 注意，是针对最后一个维度进行求解~
+    mean = tensor.mean(-1, keepdim=True)
+    std = tensor.std(-1, unbiased=False, keepdim=True)
+    return self.gamma * (tensor - mean) / (std + self.eps) + self.beta
+为什么在nlp中用layer-normalization
+在nlp中每个句子的长度是不同的，导致同一个batch中，在相同长度的位置上，不同的点可能是填充数据，batch计算不准确
+

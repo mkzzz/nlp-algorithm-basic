@@ -1,0 +1,96 @@
+模型参数初始化
+
+# 一、常用初始化方法
+import torch.nn as nn
+import torch
+ 
+weights = torch.empty(2, 2)
+ 
+# 1.用均匀分布的值填充输入张量, 参数a：均匀分布的下界, 默认为0.; 参数b：均匀分布的上界, 默认为1.
+uniform_weights = nn.init.uniform_(weights, a=0., b=1.)
+print(uniform_weights)
+# tensor([[0.3461, 0.2987],
+#         [0.6055, 0.1812]])
+ 
+# 2.用正太分布的值填充输入张量, 参数mean：正态分布的均值, 默认为0.; 参数std：正态分布的方差, 默认为1.
+normal_weights = nn.init.normal_(weights, mean=0., std=1.)
+print(normal_weights)
+# tensor([[ 0.2367,  0.8761],
+#         [-1.8620,  0.3347]])
+ 
+# 3.用常数值填充输入张量, 参数val：要填充的常数.
+constant_weights = nn.init.constant_(weights, val=2)
+print(constant_weights)
+# tensor([[2., 2.],
+#         [2., 2.]])
+ 
+# 4.用常数1.填充输入张量
+ones_weights = nn.init.ones_(weights)
+print(ones_weights)
+# tensor([[1., 1.],
+#         [1., 1.]])
+ 
+# 5.用常数0.填充输入张量
+zeros_weights = nn.init.zeros_(weights)
+print(zeros_weights)
+# tensor([[0., 0.],
+        # [0., 0.]])
+ 
+# 6和7来自"Understanding the difficulty of training deep feedforward neural networks", 目的是为了输入和输出的方差相同
+ 
+# 6.用均匀分布的值填充输入张量, 张量中的值采样自U(-a, a)
+# 其中a= gain * sqrt(6/(fan_in + fan_out)), fan_in为输入神经元个数, fan_out为输出神经元个数；参数gain：比例因子
+xavier_uniform_weights = nn.init.xavier_uniform_(weights, gain=1.)
+print(xavier_uniform_weights)
+# tensor([[-1.0660,  1.1813],
+#         [ 0.9636, -0.4884]])
+ 
+# 7.用正态分布的值填充输入张量, 张量中的值采样自N(0, std)
+# 其中std= gain * sqrt(2/(fan_in + fan_out)), fan_in为输入神经元个数, fan_out为输出神经元个数；参数gain：比例因子
+xavier_normal_weights = nn.init.xavier_normal_(weights, gain=1.)
+print(xavier_normal_weights)
+# tensor([[-0.7156,  1.4992],
+#         [ 1.2005, -0.5253]])
+ 
+ 
+# 8和9来自"Delving deep into rectifiers: Surpassing human-level performance on ImageNet classification"
+# Xavier在tanh中表现的很好，但在Relu激活函数中表现的很差，所何凯明提出: 在ReLU网络中，假定每一层有一半的神经元被激活，另一半为0，
+# 所以，要保持方差不变，只需要在 Xavier 的基础上再除以2, 也就是说在方差推到过程中，式子左侧除以2.
+ 
+# 8.用均匀分布的值填充输入张量, 张量中的值采样自U(-bound, bound), 其中bound = sqrt(6/((1 + a^2) * fan_in))
+# 参数a：该层后面一层的激活函数中负的斜率(默认为ReLU，a=0)
+# 参数mode：‘fan_in’ 或者 ‘fan_out’. fan_in保持weights的方差在前向传播中不变；fan_out保持weights的方差在反向传播中不变。
+# 参数nonlinearity：非线性激活函数名，建议'relu'或'leaky_relu'
+kaiming_uniform_weights = nn.init.kaiming_uniform_(weights, a=0, mode='fan_in', nonlinearity='leaky_relu')
+print(kaiming_uniform_weights)
+# tensor([[-1.0292, -0.5384],
+#         [ 1.6690,  1.3409]])
+ 
+# 9.用正态分布的值填充输入张量, 张量中的值采样自均值为0，标准差为sqrt(2/((1 + a^2) * fan_in))的正态分布
+# 参数a：该层后面一层的激活函数中负的斜率(默认为ReLU，a=0)
+# 参数mode：‘fan_in’ 或者 ‘fan_out’. fan_in保持weights的方差在前向传播中不变；fan_out保持weights的方差在反向传播中不变。
+# 参数nonlinearity：非线性激活函数名，建议'relu'或'leaky_relu'
+kaiming_normal_weights = nn.init.kaiming_normal_(weights, a=0, mode='fan_in', nonlinearity='leaky_relu')
+print(kaiming_normal_weights)
+# tensor([[ 0.0044,  0.1278],
+
+# 二、初始化调用代码
+# 1.直接调用
+for m in self.modules():
+    if isinstance(m, nn.Conv2d):
+        nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
+    elif isinstance(m, nn.BatchNorm2d):
+        nn.init.constant_(m.weight, 1)
+        nn.init.constant_(m.bias, 0)
+# 2.model.apply
+
+def weights_init(m): 
+    if isinstance(m, nn.Conv2d): 
+        nn.init.xavier_normal_(m.weight.data) 
+        nn.init.xavier_normal_(m.bias.data)
+    elif isinstance(m, nn.BatchNorm2d):
+        nn.init.constant_(m.weight,1)
+        nn.init.constant_(m.bias, 0)
+ 
+model.apply(weights_init)
+
