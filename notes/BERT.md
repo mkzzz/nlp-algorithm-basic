@@ -58,20 +58,20 @@ bert对比
 CBOW和MLM的区别：  
 两者都是根据上下文预测中间词，CBOW有context，window，MLM没有限制
 
-bert变种
-RoBerTa，模型大，动态mask(每个epoch不同mask)
-ALBERT，参数量小，跨层参数共享
-1.减少了参数，训练速度提升，但是因为大部分是共享参数，inference并没有加速
-(1)在字embedding的时候，做因式分解，v*h 改为 v*e+e*h
-(2)参数共享，吧每层的参数进行共享，3种模式，只共享attention，只共享ffn，全部共享
-2.吧nsp任务去掉，加入了sop sentence order prediction  句子顺序预测
-BERT-WWM，哈工大/讯飞，mask全词，中文
-ERINE，百度，mask实体，中文
-SpanBERT，随机选取span进行mask
-TinyBERT，对transformer蒸馏
-SentenceBERT，孪生网络
-K-BERT，腾讯，图谱
-XLNET，既保持LM，又想要上下文信息，预测第i个词时，从上下文随机选i-1个词attention
+bert变种  
+RoBerTa，模型大，动态mask(每个epoch不同mask)  
+ALBERT，参数量小，跨层参数共享  
+1.减少了参数，训练速度提升，但是因为大部分是共享参数，inference并没有加速  
+(1)在字embedding的时候，做因式分解，v*h 改为 v*e+e*h  
+(2)参数共享，吧每层的参数进行共享，3种模式，只共享attention，只共享ffn，全部共享  
+2.吧nsp任务去掉，加入了sop sentence order prediction  句子顺序预测  
+BERT-WWM，哈工大/讯飞，mask全词，中文  
+ERINE，百度，mask实体，中文  
+SpanBERT，随机选取span进行mask  
+TinyBERT，对transformer蒸馏  
+SentenceBERT，孪生网络  
+K-BERT，腾讯，图谱  
+XLNET，既保持LM，又想要上下文信息，预测第i个词时，从上下文随机选i-1个词attention  
 
 elmo/gpt/bert对比  
 elmo，Bilstm+LM，feature-based(固定elmo权重)  
