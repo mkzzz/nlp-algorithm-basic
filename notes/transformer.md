@@ -17,9 +17,11 @@ attention-mask
 MultiHeadAttention  
 <div align="center"><img src="../assets/multiheadattention.png"></div>  
 Q,K,V分别切成H个头，得到H个attention的结果后再concat  
-en-en，Q(en-in),K(en-in),V(en-in),  
-en-de，Q(de-in),K(en-in),V(en-in),  
-de-de，Q(de-in),K(de-in),V(de-in),  
+
+en-en，Q(en-in),K(en-in),V(en-in),self-attention   
+en-de，Q(de-in),K(en-in),V(en-in),cross self-attention   
+de-de，Q(de-in),K(de-in),V(de-in),masked self-attention   
+
   
 结构  
 6个encoder，6个decoder  
