@@ -22,7 +22,7 @@ mt=gt，vt=1
 六、Adagrad，只有2阶动量，sum(gt**2)  
 <div align="center"><img src="./png/Adagrad.png"></div>  
   
-七、RMSProp，RMSProp是在SGD基础上增加二阶动量，无一阶动  
+七、RMSProp，RMSProp是在SGD基础上增加二阶动量，无一阶动，默认值0.999   
 <div align="center"><img src="./png/RMSProp.png"></div>  
   
 八、Adam，Adam优化器具有较好的鲁棒性，它同时结合了SGDM一阶动量和RMSProp的二阶动量，并在此基础上增加了两个修正项  
