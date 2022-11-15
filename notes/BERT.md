@@ -31,10 +31,10 @@ Bert_LARGE:Layer = 24, Hidden = 1024, Head = 16, 每个head是64纬, Total Param
 输出  
 1.sequence output  
 2.polled->cls+liner+tanch/nsp任务  
-last hidden state shape是(batch_size, sequence_length, hidden_size)，hidden_size=768,它是模型最后一层的隐藏状态 
-pooler_output：shape是(batch_size, hidden_size)，这是序列的第一个token (cls) 的最后一层的隐藏状态，它是由线性层和Tanh激活函数进一步处理的，这个输出不是对输入的语义内容的一个很好的总结，对于整个输入序列的隐藏状态序列的平均化或池化可以更好的表示一句话。 
-hidden_states：这是输出的一个可选项，如果输出，需要指定config.output_hidden_states=True,它是一个元组，含有13个元素，第一个元素可以当做是embedding，其余12个元素是各层隐藏状态的输出，每个元素的形状是(batch_size, sequence_length, hidden_size)， 
-attentions：这也是输出的一个可选项，如果输出，需要指定config.output_attentions=True,它也是一个元组，含有12个元素，包含每的层注意力权重，用于计算self-attention heads的加权平均值 
+last hidden state shape是(batch_size, sequence_length, hidden_size)，hidden_size=768,它是模型最后一层的隐藏状态  
+pooler_output：shape是(batch_size, hidden_size)，这是序列的第一个token (cls) 的最后一层的隐藏状态，它是由线性层和Tanh激活函数进一步处理的，这个输出不是对输入的语义内容的一个很好的总结，对于整个输入序列的隐藏状态序列的平均化或池化可以更好的表示一句话。   
+hidden_states：这是输出的一个可选项，如果输出，需要指定config.output_hidden_states=True,它是一个元组，含有13个元素，第一个元素可以当做是embedding，其余12个元素是各层隐藏状态的输出，每个元素的形状是(batch_size, sequence_length, hidden_size)，   
+attentions：这也是输出的一个可选项，如果输出，需要指定config.output_attentions=True,它也是一个元组，含有12个元素，包含每的层注意力权重，用于计算self-attention heads的加权平均值   
 
 FFN，FeedForwardNetwork  
 linear2(dropout(GELU(linear1(x))))  
@@ -66,13 +66,13 @@ bert有位置编码，cbow没有位置编码，是连续词袋模型
 bert变种  
 RoBerTa，模型大，动态mask 
 (1)训练时间更长，批次更大，序列更长, 数据更多；
-(2)删除下一个句子的预测
+(2)删除下一个句子的预测  
 (3)使用动态masking。(每个epoch不同mask) 
 
 ALBERT，参数量小，跨层参数共享  
 1.减少了参数，训练速度提升，但是因为大部分是共享参数，inference并没有加速  
 (1)在字embedding的时候，做因式分解，v*h 改为 v*e+e*h  
-(2)参数共享，吧每层的参数进行共享，3种模式，只共享attention，只共享ffn，全部共享 
+(2)参数共享，吧每层的参数进行共享，3种模式，只共享attention，只共享ffn，全部共享  
 2.吧nsp任务去掉，加入了sop sentence order prediction  句子顺序预测  
 
 BERT-WWM，哈工大/讯飞，mask全词，中文  
