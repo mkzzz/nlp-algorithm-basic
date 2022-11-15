@@ -15,5 +15,5 @@ gpt1，12层，transformer的decoder
 gpt2，12层  
 1.去掉了finetune层，自动识别什么任务  
 2.增加了数据集  
-3.下颚骨你家了模型擦数，1542M  
+3.增加了模型擦数，1542M  
 4.调整了模型结构，layerNormalization提前  
