@@ -31,6 +31,10 @@ Bert_LARGE:Layer = 24, Hidden = 1024, Head = 16, 每个head是64纬, Total Param
 输出  
 1.sequence output  
 2.polled->cls+liner+tanch/nsp任务  
+last hidden state shape是(batch_size, sequence_length, hidden_size)，hidden_size=768,它是模型最后一层的隐藏状态 
+pooler_output：shape是(batch_size, hidden_size)，这是序列的第一个token (cls) 的最后一层的隐藏状态，它是由线性层和Tanh激活函数进一步处理的，这个输出不是对输入的语义内容的一个很好的总结，对于整个输入序列的隐藏状态序列的平均化或池化可以更好的表示一句话。 
+hidden_states：这是输出的一个可选项，如果输出，需要指定config.output_hidden_states=True,它是一个元组，含有13个元素，第一个元素可以当做是embedding，其余12个元素是各层隐藏状态的输出，每个元素的形状是(batch_size, sequence_length, hidden_size)， 
+attentions：这也是输出的一个可选项，如果输出，需要指定config.output_attentions=True,它也是一个元组，含有12个元素，包含每的层注意力权重，用于计算self-attention heads的加权平均值 
 
 FFN，FeedForwardNetwork  
 linear2(dropout(GELU(linear1(x))))  
@@ -41,7 +45,7 @@ linear2(dropout(GELU(linear1(x))))
 
 FFN作用  
 1.增加参数，增强模型拟合能力  
-2.相当于对字embedding加入参数，增强自己字内部的信息，从768-2048-768只是单个字内不得embedding-size变化  
+2.相当于对字embedding加入参数，增强自己字内部的信息，从768-2048-768只是单个字内的embedding-size变化  
 
 bert结构  
 <div align="center"><img src="../assets/bert结构1_encoder.png"><img src="../assets/bert结构2.png"></div>
@@ -56,7 +60,8 @@ https://zhuanlan.zhihu.com/p/144582114
   
 bert对比  
 CBOW和MLM的区别：  
-两者都是根据上下文预测中间词，CBOW有context，window，MLM没有限制
+两者都是根据上下文预测中间词，CBOW有context，window，MLM没有限制 
+bert有位置编码，cbow没有位置编码，是连续词袋模型 
 
 bert变种  
 RoBerTa，模型大，动态mask 
@@ -67,7 +72,7 @@ RoBerTa，模型大，动态mask
 ALBERT，参数量小，跨层参数共享  
 1.减少了参数，训练速度提升，但是因为大部分是共享参数，inference并没有加速  
 (1)在字embedding的时候，做因式分解，v*h 改为 v*e+e*h  
-(2)参数共享，吧每层的参数进行共享，3种模式，只共享attention，只共享ffn，全部共享
+(2)参数共享，吧每层的参数进行共享，3种模式，只共享attention，只共享ffn，全部共享 
 2.吧nsp任务去掉，加入了sop sentence order prediction  句子顺序预测  
 
 BERT-WWM，哈工大/讯飞，mask全词，中文  
