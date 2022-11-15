@@ -32,11 +32,10 @@ FFN，feed forward network
 激活是relu  
   
 layer normalization  
-v11，v12，v13，v14  <---layerNormalization横向计算，mean，std，进行归一化  
+v11，v12，v13，v14  <---layerNormalization横向计算，mean，std，进行归一化，是对hidden-size的纬度进行归一化     
 v21，v22，v23，v24  
 v31，v32，v33，v34  
-^ --batc  hNormalization,竖向计算，mean，std，进行归一化    
-是对hidden-size的纬度进行归一化   
+^ --batc  hNormalization,竖向计算，mean，std，进行归一化     
 
 问题  
 为什么除以dk  
