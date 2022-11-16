@@ -95,3 +95,5 @@ def weights_init(m):
  
 model.apply(weights_init)
 
+hugging face时的self.init_weights初始化
+
