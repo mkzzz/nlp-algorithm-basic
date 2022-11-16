@@ -20,5 +20,5 @@ IDF = 文章总数/包含该词的文档数
 <div align="center"><img src="../../assets/tfidf4.png"></div> 
 
 BM25  
-BM25算法是TF-IDF算法的优化  
+BM25算法是TF-IDF算法的优化，BM 是Best Match最佳匹配的缩写，25指的是第25次算法迭代  
 <div align="center"><img src="../../assets/bm25.png"></div>  
