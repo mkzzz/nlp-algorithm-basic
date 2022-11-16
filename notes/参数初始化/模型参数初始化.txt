@@ -44,6 +44,7 @@ xavier_uniform_weights = nn.init.xavier_uniform_(weights, gain=1.)
 print(xavier_uniform_weights)
 # tensor([[-1.0660,  1.1813],
 #         [ 0.9636, -0.4884]])
+tensorlfow1.x时采用from tensorflow.contrib.layers.python.layers import initializers.xavier_initializer,默认是均匀分布
  
 # 7.用正态分布的值填充输入张量, 张量中的值采样自N(0, std)
 # 其中std= gain * sqrt(2/(fan_in + fan_out)), fan_in为输入神经元个数, fan_out为输出神经元个数；参数gain：比例因子
