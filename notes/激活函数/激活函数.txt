@@ -1,0 +1,20 @@
+Activation Function
+
+1.sigmoid
+取值，0-1之间
+1/(1+e**-x)
+
+2.softmax
+取值，0-1之间
+e**x/连加e**x
+
+2.tanh
+-1到1
+(e**x - e**-x)/(e**x + e**-x)
+
+3.Relu
+max(0,x),小于0是0，大于等于0是x
+
+4.Gelu
+
+

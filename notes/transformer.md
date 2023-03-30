@@ -24,6 +24,7 @@ de-de，Q(de-in),K(de-in),V(de-in),masked self-attention
 
   
 结构  
+原始transformer中的隐层向量维度hidden_size=d_model=512，multihead个数n_head=8；而bert中hidden_size=d_model=768，multihead个数n_head=12  
 6个encoder，6个decoder  
 <div align="center"><img src="../assets/trans结构0.png"><img src="../assets/trans结构1.png"><img src="../assets/trans结构2.png"><img src="../assets/trans结构3.png"><img src="../assets/trans结构4.png"></div>  
   

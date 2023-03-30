@@ -11,7 +11,9 @@ https://zhuanlan.zhihu.com/p/422220941
 
 两种训练加速方法：  
 负采样  
+只更新部分权重，对于非真实值的词，按照词频作为权重随机选取一部分更新  
 层次softmax  
+将softmax转换成多个2分类，哈夫曼树，以词在整个语料中出现的频率构建哈夫曼树，softmax换成级联的sigmoid，转换成了大量的sigmoid  
 
 skip-gram  
 <div align="center"><img src="../assets/skip_gram1.png"></div>  

@@ -38,10 +38,10 @@ attentions：这也是输出的一个可选项，如果输出，需要指定conf
 
 FFN，FeedForwardNetwork  
 linear2(dropout(GELU(linear1(x))))  
-1.linear，768->2048  
+1.linear，768->3072（4H）  
 2.GELU(在transformer中用的是RELU(线性整流函数，修正线性单元)，GPT中FFN是卷积)  
 3.dropout  
-4.linear,2048->768  
+4.linear,3072（4H）->768  
 
 FFN作用  
 1.增加参数，增强模型拟合能力  
