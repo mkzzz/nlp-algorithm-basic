@@ -20,7 +20,7 @@ ChatGPT 是由人工智能研究实验室 OpenAI 在2022年11月30日发布的�
 
   - 假如 “我想对暗恋的女孩写一篇表白信”，如何利用 ChatGPT 实现呢？
 
-  <div align=center><img src="./img/01.png" style="zoom:60%" ><img/></div>
+  <div align=center><img src="img/01.png" style="zoom:60%" ><img/></div>
 
 - 多轮对话完成问题解答：
 
