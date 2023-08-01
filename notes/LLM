@@ -7,3 +7,4 @@ topp，也叫核采样（Nucleus Sampling），候选词概率加起来大于等
 chatglm
 可以分为三种方式：单词（MASK）、句子（sMASK）、文档（gMASK）
 special_tokens:{'[MASK]': 64789, '[gMASK]': 64790, '[sMASK]': 64791, 'sop': 64792, 'eop': 64793}
+<div align="center"><img src="../assets/glm1.jpeg"></div>
