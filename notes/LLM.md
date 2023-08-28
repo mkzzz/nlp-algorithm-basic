@@ -46,3 +46,13 @@ autogpt
 可以理解为作者设计了一个十分精巧的prompt，然后把我们要执行的命令，基于prompt模板封装后发给GPT-4，然后根据结果来执行。  
 其核心在于它把我们的命令发送给GPT-4的时候，让GPT-4根据指定的COMMAND来选择操作，上述COMMAND中，大家可以看到包括谷歌搜索、浏览网站、读写文件、执行代码等。AutoGPT会把问题，如“寻找今天推特上最火的AI推文”发给GPT-4，并要求GPT-4根据这些COMMAND选择最合适的方式去得到答案，并给出每一个COMMAND背后需要使用的参数，包括URL、执行的代码等  
 
+sequential modulelist区别  
+nn.Sequential里面的模块按照顺序进行排列的，所以必须确保前一个模块的输出大小和下一个模块的输入大小是一致的  
+nn.ModuleList，它是一个储存不同 module，并自动将每个 module 的 parameters 添加到网络之中的容器，直接用python的list时，不会自动注册到网络中，可以使用 forward 来计算输出结果。但是如果用其实例化的网络进行训练的时候，因为这些层的parameters不在整个网络之中，所以其网络参数也不会被更新，也就是无法训练  
+不同点:Sequential有先后顺序，且内部实现了forward函数，ModuleList没有先后顺序，没有实现内部forward函数  
+  
+混合精度为什么在优化器中是32位的  
+半精度累加误差会积累  
+  
+torch2.0有什么改进  
+即torch.compile。这是一个新增的特性，可以极大地提升模型运行速度  
