@@ -56,3 +56,39 @@ nn.ModuleList，它是一个储存不同 module，并自动将每个 module 的 
   
 torch2.0有什么改进  
 即torch.compile。这是一个新增的特性，可以极大地提升模型运行速度  
+  
+Muti Query Attention (MQA)  
+k和v都是1个head，q是多个head  
+encoder速度没有提升1.7-1.5ms，inference上提升明显（encoder+decoder），46-3.8ms，  
+猜测原因，1.KV cache比较小，读取数据快，计算量小，2.inference阶段要顺序执行  
+在MHA中，query,key,value每个向量均有768维度，而在MQA中，只有query是768维，而key和value均只剩下64维了，恰好是1个head_dim的维度。因此，我们更可以确认：在MQA中，除了query向量还保存着12个头，key和value向量都只剩1个公共头了  
+  
+Attention with Linear Bias（ALiBi）  
+解决 transformer 训练和推理时文本长度不一致的难题  
+模型在接收输入时直接去掉Position Embedding向量，而是在 Attention中计算query·Key的值后面加入一个偏置常量（非训练变量），来达到注入位置信息的效果。  
+  
+flash attentio，细节  
+通过减少访问HBM(high bandwidth memory)和on-chip SRAM内存读写时间，提高计算速度的方法。具体来说，从HBM中加载输入数据，在SRAM中执行所有的计算操作(矩阵乘法，mask，softmax，dropout，矩阵乘法)，再将计算结果写回到HBM中，分块后的部分可以在一个CUDA kernel完成，具体可以归纳为：  
+1.通过分块计算，增大每次计算矩阵的最小单元，从而降低对HBM的读写次数，使得整体得到加速（HBM读写非常耗时）  
+2.通过重计算，降低内存：被丢弃的变量在反传的过程中会再次使用到，需要重新计算得到，类似于梯度检查。  
+  
+fp16和bf16的区别  
+FP32单精度浮点数，8bit 表示指数，23bit 表示小数  
+BF16 是对FP32截断数据，即用8bit 表示指数，7bit 表示小数。  
+FP16半精度浮点数，用5bit 表示指数，10bit 表示小数；  
+与32位相比，采用BF16/FP16吞吐量可以翻倍，内存需求可以减半。但是这两者精度上差异不一样，BF16 可表示的整数范围更广泛，但是尾数精度较小；FP16 表示整数范围较小，但是尾数精度较高。  
+BF16 计算时可避免计算溢出，出现Inf case；  
+FP16 在输入数据超过65506 时，计算结果溢出，出现Inf case  
+BF16的指数和FP32一样是为了方便混合精度计算  
+  
+训练的trick  
+多伦对话的训练，将多伦对话进行拼接，每个回答都做掩码，这样一次训练可以达到多轮效果  
+  
+显卡，batch细节计算  
+当是fp16时，模型2n，梯度gradient，2n，Adam状态optimizer states，12n（fp32的模型参数备份，fp32的momentum和fp32的variance）  
+zero1，os  
+zero2，os+gradient  
+zero3，os+gradient+model  
+  
+lora中的alpha是什么意思  
+lora训练的时候一般会增加学习率, 系数为 lora_alpha/lora_r，https://zhuanlan.zhihu.com/p/646831196
