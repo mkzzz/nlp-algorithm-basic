@@ -92,3 +92,11 @@ zero3，os+gradient+model
   
 lora中的alpha是什么意思  
 lora训练的时候一般会增加学习率, 系数为 lora_alpha/lora_r，https://zhuanlan.zhihu.com/p/646831196
+
+lora和ptuning的区别， 细节  
+lora的动机是什么  
+lora是大模型的低秩适配器，或者就简单的理解为适配器，模型是过参数化的，它们有更小的内在维度，模型主要依赖于这个低的内在维度（low intrinsic dimension）去做任务适配  
+  
+lora，大的参数矩阵，也是交transformer-block，采用2个较小的维度的矩阵相乘做支路，再相加，微调时，只调试支路参数  
+ptuning，主要针对NLU任务，对于BERT类双向语言模型采用模版(P1, x, P2, [MASK], P3)，对于单向语言模型采用(P1, x, P2, [MASK])，ptuningv2，在每层都加上prompt参数  
+Prefix-tuning是做生成任务，它根据不同的模型结构定义了不同的Prompt拼接方式，在GPT类的自回归模型上采用[PREFIX, x, y]，在T5类的encoder-decoder模型上采用[PREFIX, x, PREFIX', y]：  
