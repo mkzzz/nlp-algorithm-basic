@@ -67,7 +67,7 @@ Attention with Linear Bias（ALiBi）
 解决 transformer 训练和推理时文本长度不一致的难题  
 模型在接收输入时直接去掉Position Embedding向量，而是在 Attention中计算query·Key的值后面加入一个偏置常量（非训练变量），来达到注入位置信息的效果。  
   
-flash attentio，细节  
+flash attention，细节  
 通过减少访问HBM(high bandwidth memory)和on-chip SRAM内存读写时间，提高计算速度的方法。具体来说，从HBM中加载输入数据，在SRAM中执行所有的计算操作(矩阵乘法，mask，softmax，dropout，矩阵乘法)，再将计算结果写回到HBM中，分块后的部分可以在一个CUDA kernel完成，具体可以归纳为：  
 1.通过分块计算，增大每次计算矩阵的最小单元，从而降低对HBM的读写次数，使得整体得到加速（HBM读写非常耗时）  
 2.通过重计算，降低内存：被丢弃的变量在反传的过程中会再次使用到，需要重新计算得到，类似于梯度检查。  
@@ -100,3 +100,14 @@ lora是大模型的低秩适配器，或者就简单的理解为适配器，模�
 lora，大的参数矩阵，也是交transformer-block，采用2个较小的维度的矩阵相乘做支路，再相加，微调时，只调试支路参数  
 ptuning，主要针对NLU任务，对于BERT类双向语言模型采用模版(P1, x, P2, [MASK], P3)，对于单向语言模型采用(P1, x, P2, [MASK])，ptuningv2，在每层都加上prompt参数  
 Prefix-tuning是做生成任务，它根据不同的模型结构定义了不同的Prompt拼接方式，在GPT类的自回归模型上采用[PREFIX, x, y]，在T5类的encoder-decoder模型上采用[PREFIX, x, PREFIX', y]：  
+
+遇到困难，怎样克服，亮点有哪些：  
+搜索ner，开始用的bert，发现效率更不上，我们需要性能更强的模型，而且需要控制成本，线上不会大量用gpu，所以我们用了一个cnn的小模型，参数只有bert的10分之1，单次请求时间是6ms左右  
+但是由于泛化性差一些，做了一些改进  
+1.加大训练数据  
+2.加入词特征信息  
+3.自己训练word2vec的embedding  
+效果有所提升  
+大模型  
+1.开源代码，全参数微调，微调后输出混乱，发现预处理代码有问题，mask后的编码specialtoken位置不对导致，修改后好了  
+2.全参数微调，一开始我们全部用的领域内数据，发现遗忘问题严重，后来参考论文，加入通用数据，1:5，wiki百科，qa对话等  
