@@ -93,6 +93,10 @@ zero3，os+gradient+model
 lora中的alpha是什么意思  
 lora训练的时候一般会增加学习率, 系数为 lora_alpha/lora_r，https://zhuanlan.zhihu.com/p/646831196
 
+lora矩阵参数初始化  
+矩阵a是降维矩阵，b是升维矩阵。 
+初始化：矩阵A是 Uniform 初始化，B 是零初始化，这样最初的 lora 权重为 0，所以 lora 参数是从头学起，并没有那么容易收敛  
+
 lora和ptuning的区别， 细节  
 lora的动机是什么  
 lora是大模型的低秩适配器，或者就简单的理解为适配器，模型是过参数化的，它们有更小的内在维度，模型主要依赖于这个低的内在维度（low intrinsic dimension）去做任务适配  
