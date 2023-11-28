@@ -134,3 +134,25 @@ DDP (Distribution Data Parallel)
 大模型  
 1.开源代码，全参数微调，微调后输出混乱，发现预处理代码有问题，mask后的编码specialtoken位置不对导致，修改后好了  
 2.全参数微调，一开始我们全部用的领域内数据，发现遗忘问题严重，后来参考论文，加入通用数据，1:5，wiki百科，qa对话等  
+  
+RMSNorm:Root Mean Square Layer Normalization  
+RMSNorm的提出是为了提升layerNorm的训练速度提出的。RMSNorm也是一种layerNorm，只是归一化的方法不同。相比layerNorm中利用均值和方差进行归一化，RMSNorm 利用均方根进行归一化，去掉均值  
+有研究认为layerNorm取得成功的关键是缩放部分的缩放不变性，而不是平移部分的平移不变性。  
+  
+SwiGLU是Gated Linear Units（GLU）激活函数的一种变体  
+就是采用Swish作为激活函数的GLU变体 , 其中Swish为x点乘sigmoid(bx)b为参数，可能为0.5/1等,glu为sigmoid(xw+b)点乘(xv+b)  
+https://zhuanlan.zhihu.com/p/621058772  
+  
+向量表示  
+https://github.com/liqiangus/m3e-base  
+m3e-base/110M大小/768维度  
+M3E 是 Moka Massive Mixed Embedding 的m3e-base 110M 768缩写，in-batch负采样，对比学习。  
+Moka，此模型由 MokaAI 训练，开源和评测，训练脚本使用 uniem ，评测 BenchMark 使用 MTEB-zh  
+Massive，此模型通过千万级 (2200w+) 的中文句对数据集进行训练  
+Mixed，此模型支持中英双语的同质文本相似度计算，异质文本检索等功能，未来还会支持代码检索   
+Embedding，此模型是文本嵌入模型，可以将自然语言转换成稠密的向  
+
+2.微调数据组成  
+1.标注数据，1:5  
+2.百科数据，百科问答(baike2018qa)，社区问答json版(webtext2019zh)  
+3.开源数据，Alpaca-GPT4 52k 中文  
