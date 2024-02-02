@@ -50,7 +50,8 @@ multi-head-attention的作用
 <div align="center"><img src="../assets/multiheadattention1.png"></div>   
 
 位置编码  
-位置编码的定义有多种，其中一种是绝对位置编码（gpt、bert使用），还有相对位置编码（transformer原始论文使用）。  
+绝对位置编码 就是用 位置索引 直接进行编码, 一般都是直接构建 位置嵌入向量, 和 词嵌入向量 直接相加。Transformer 中的 正弦波位置编码, BERT 和 GPT 中的 可训练式位置编码 都属于这一种。 
+位置编码的定义有多种，其中一种是绝对位置编码（gpt、bert使用，transformer原始论文使用），还有相对位置编码。  
 截止目前为止，我们介绍的Transformer模型并没有捕捉顺序序列的能力，也就是说无论句子的结构怎么打乱，Transformer都会得到类似的结果。换句话说，Transformer只是一个功能更强大的词袋模型而已。  
 为了解决这个问题，论文中在编码词向量时引入了位置编码（Position Embedding）的特征。具体地说，位置编码会在词向量中加入了单词的位置信息，这样Transformer就能区分不同位置的单词了。  
 那么怎么编码这个位置信息呢？常见的模式有：a. 根据数据学习；b. 自己设计编码规则。在这里作者采用了第二种方式。那么这个位置编码该是什么样子呢？通常位置编码是一个长度为d_modeldmodel的特征向量  
