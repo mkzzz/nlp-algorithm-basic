@@ -137,7 +137,8 @@ DDP (Distribution Data Parallel)
   
 RMSNorm:Root Mean Square Layer Normalization  
 RMSNorm的提出是为了提升layerNorm的训练速度提出的。RMSNorm也是一种layerNorm，只是归一化的方法不同。相比layerNorm中利用均值和方差进行归一化，RMSNorm 利用均方根进行归一化，去掉均值  
-有研究认为layerNorm取得成功的关键是缩放部分的缩放不变性，而不是平移部分的平移不变性。  
+有研究认为layerNorm取得成功的关键是缩放部分的缩放不变性，而不是平移部分的平移不变性。
+减少7%-64%时间
   
 SwiGLU是Gated Linear Units（GLU）激活函数的一种变体  
 就是采用Swish作为激活函数的GLU变体 , 其中Swish为x点乘sigmoid(bx)b为参数，可能为0.5/1等,glu为sigmoid(xw+b)点乘(xv+b)  
@@ -156,3 +157,7 @@ Embedding，此模型是文本嵌入模型，可以将自然语言转换成稠�
 1.标注数据，1:5  
 2.百科数据，百科问答(baike2018qa)，社区问答json版(webtext2019zh)  
 3.开源数据，Alpaca-GPT4 52k 中文  
+
+旋转位置编码（Rotary Position Embedding，RoPE）是论文Roformer: Enhanced Transformer With Rotray Position Embedding 提出的一种能够将相对位置信息依赖集成到 self-attention 中并提升 transformer 架构性能的位置编码方式。而目前很火的 LLaMA、GLM 模型也是采用该位置编码方式。
+和相对位置编码相比，RoPE 具有更好的外推性
+RoPE 的 self-attention 操作的流程是：对于 token 序列中的每个词嵌入向量，首先计算其对应的 query 和 key 向量，然后对每个 token 位置都计算对应的旋转位置编码，接着对每个 token 位置的 query 和 key 向量的元素按照 两两一组 应用旋转变换，最后再计算 query 和 key 之间的内积得到 self-attention 的计算结果。
