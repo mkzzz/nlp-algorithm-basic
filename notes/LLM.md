@@ -1,3 +1,5 @@
+https://github.com/wdndev/llm_interview_note
+
 LLM常用参数  
 temperature/top-k/top-p都是采样参数，如果 k 和 p 都启用，则 p 在 k 之后起作用  
 temperature，于控制模型输出的结果的随机性，这个值越大随机性越大，等于0时每次输出结果一样，此参数会使分布更加平滑，值越大越平滑。用在softmax上时，e**x转换成e**(x/t)  
